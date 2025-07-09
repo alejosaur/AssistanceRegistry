@@ -47,7 +47,7 @@ The solution is organized into projects:
 
 You will be working on two tasks within this project. Please read them carefully. Feel free to think out loud and ask any questions you have.
 
-### Task 1: Implement Session Status Management (25-30 minutes)
+### Task 1: Implement Session Status Management 
 
 **Context:**
 Our system currently manages `Sessions` and `Attendees`, including waitlists. We need to enhance the `Session` entity to actively reflect its current occupancy status. The `Session` entity should have a `Status` property, indicating whether it's `Empty`, `Available`, `Crowded`, or `WaitlistActive`.
@@ -55,7 +55,7 @@ Our system currently manages `Sessions` and `Attendees`, including waitlists. We
 **Your Task:**
 Implement all necessary logic to ensure the `Session.Status` property is **automatically updated and accurately maintained** whenever the number of registered attendees or waitlisted attendees changes.
 
-### Task 2: Bug Fix: Incorrect Waitlist Prioritization (15-20 minutes)
+### Task 2: Bug Fix: Incorrect Waitlist Prioritization 
 
 **Context:**
 We've identified a critical bug in how our system manages the `Session` waitlist. The current promotion algorithm is designed to prioritize attendees based solely on their **`PriorityScore`** (highest score first). However, we've observed that high-priority attendees (e.g., VIPs) are sometimes promoted *after* lower-priority attendees, which is incorrect according to our business rules.
