@@ -6,7 +6,7 @@
         public string Name { get; private set; }
         public int MaxCapacity { get; private set; }
         private List<Attendee> _registeredAttendees = new List<Attendee>();
-        private List<Attendee> _waitlistedAttendees = new List<Attendee>();
+        public List<Attendee> _waitlistedAttendees = new List<Attendee>();
 
         public IReadOnlyList<Attendee> RegisteredAttendees => _registeredAttendees.AsReadOnly();
         public IReadOnlyList<Attendee> WaitlistedAttendees => _waitlistedAttendees.AsReadOnly();
@@ -64,6 +64,47 @@
                 return attendeeToPromote;
             }
             return null;
+        }
+
+        // Proposed new method for capacity warning
+        public bool getWarningStatus80()
+        {
+            if (MaxCapacity > 0)
+            {
+                if (_registeredAttendees.Count > 0)
+                {
+                    if (_registeredAttendees != null)
+                    {
+                        double currentOccupancyPercentage = (double)_registeredAttendees.Count / MaxCapacity;
+
+                        if (currentOccupancyPercentage >= 0.8)
+                        {
+                            return true;
+                        }
+                    }
+                }
+            }
+            return false;
+        }
+
+        public bool getWarningStatus50()
+        {
+            if (MaxCapacity > 0)
+            {
+                if (_registeredAttendees.Count > 0)
+                {
+                    if (_registeredAttendees != null)
+                    {
+                        double currentOccupancyPercentage = (double)_registeredAttendees.Count / MaxCapacity;
+
+                        if (currentOccupancyPercentage >= 0.5)
+                        {
+                            return true;
+                        }
+                    }
+                }
+            }
+            return false;
         }
     }
 }
