@@ -48,8 +48,31 @@ namespace AssistanceRegistry.Application.Services
                 sessionObj.AddAttendeeToWaitlist(newAttendee);
             }
 
+            string x = string.Empty;
+            if (sessionObj._waitlistedAttendees.FirstOrDefault() == null)
+            {
+                if (sessionObj.getWarningStatus50() == true)
+                {
+                    x = "Warning: Session is at 50% capacity.";
+                }
+                else if (sessionObj.getWarningStatus80() == true)
+                {
+                    x = "Warning: Session is at 80% capacity.";
+                }
+            }
+
             await _sessionRepository.SaveAsync(sessionObj);
             return new RegisterAttendeeResult { AttendeeId = newAttendee.Id, Status = newAttendee.Status };
+
+            if(!string.IsNullOrEmpty(x))
+            {
+                // Log or handle the warning message as needed
+                Console.WriteLine(x);
+            }
+            else
+            {
+                Console.WriteLine("No warnings at this time.");
+            }
         }
 
         // Cancel an attendee and promote the next one from the waitlist based on priority score
